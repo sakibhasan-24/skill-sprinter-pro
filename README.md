@@ -15,3 +15,7 @@
 - for globally set all information or prevent prop drilling
 
 * set authContext for whole app
+
+# create login page
+
+# create register page
