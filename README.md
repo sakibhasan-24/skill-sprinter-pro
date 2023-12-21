@@ -25,3 +25,7 @@
 - implement google log in
 - change header login into logout
 - implement logout
+
+# private route
+
+- if log in then user can create an assignment

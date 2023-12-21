@@ -34,11 +34,11 @@ export default function Header() {
         <div className="font-bold items-center space-x-4 text-xl text-slate-700">
           <Link
             className={`w-14 h-14 rounded-md ${
-              handleNavRoutes("/assignment") && "text-red-700"
+              handleNavRoutes("/create/assignment") && "text-red-700"
             }`}
-            to=""
+            to="create/assignment"
           >
-            Assignment
+            create Assignment
           </Link>
           {user ? (
             <>
