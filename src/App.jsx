@@ -1,7 +1,12 @@
 import React, { useContext } from "react";
-import { AuthContext } from "./context/AuthProvider";
+
+import { RouterProvider } from "react-router-dom";
+import router from "./routes/Routes";
 
 export default function App() {
-  const { user } = useContext(AuthContext);
-  return <div>App {user}</div>;
+  return (
+    <div>
+      <RouterProvider router={router} />
+    </div>
+  );
 }
