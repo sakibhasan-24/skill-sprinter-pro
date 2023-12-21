@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import GoogleSignIn from "../components/GoogleSignIn";
 
 export default function Register() {
   return (
@@ -44,7 +46,16 @@ export default function Register() {
             type="submit"
             value="Register"
           />
+          <GoogleSignIn />
         </form>
+        <div>
+          <p className="text-slate-800 font-semibold  text-xl text-center">
+            already register?{" "}
+            <Link to="/login">
+              <span className="ml-2 text-blue-800">login</span>
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

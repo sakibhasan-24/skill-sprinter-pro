@@ -1,8 +1,19 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { loading, user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut().then(() => {
+      toast.success("Logged Out Successfully");
+      navigate("/login");
+      return;
+    });
+  };
   const handleNavRoutes = (route) => {
     // console.log(location.pathname, route);
     if (location.pathname === route) return true;
@@ -29,14 +40,30 @@ export default function Header() {
           >
             Assignment
           </Link>
-          <Link
-            className={`w-14 h-14 rounded-md ${
-              handleNavRoutes("/login") && "text-red-700"
-            }`}
-            to="/login"
-          >
-            Login
-          </Link>
+          {user ? (
+            <>
+              <Link
+                onClick={handleLogOut}
+                className={`w-14 h-14 rounded-md ${
+                  handleNavRoutes("/login") && "text-red-700"
+                }`}
+                to="/login"
+              >
+                Logout
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                className={`w-14 h-14 rounded-md ${
+                  handleNavRoutes("/login") && "text-red-700"
+                }`}
+                to="/login"
+              >
+                Login
+              </Link>
+            </>
+          )}
         </div>
       </nav>
     </header>

@@ -19,3 +19,9 @@
 # create login page
 
 # create register page
+
+# create google log in
+
+- implement google log in
+- change header login into logout
+- implement logout
