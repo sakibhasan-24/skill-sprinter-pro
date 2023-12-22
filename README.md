@@ -29,3 +29,20 @@
 # private route
 
 - if log in then user can create an assignment
+
+# create assignment page
+
+- assignment page contain
+  - title
+  - description
+  - due date
+  - due time
+  - images
+  - level
+  - edit delete and take assignments
+
+# assignments page functionality
+
+- owner can not take this assignment as take assignment
+- others can take this assignment
+- others can not edit or delete this assignment,

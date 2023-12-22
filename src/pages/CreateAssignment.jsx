@@ -1,10 +1,52 @@
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthProvider";
 export default function CreateAssignment() {
+  const [loading, setLoading] = useState(false);
+  const { user } = useContext(AuthContext);
+  //   console.log(user.email);
+  const handleAssignmentSubmitData = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const form = e.target;
+    const formData = new FormData(form);
+    const title = formData.get("title");
+    const description = formData.get("description");
+    const date = formData.get("date");
+    const image = formData.get("image");
+    const marks = formData.get("marks");
+    const category = formData.get("level");
+    const assignment = {
+      title,
+      description,
+      date,
+      image,
+      marks,
+      category,
+      owner: user.email,
+    };
+    fetch("http://localhost:5000/create/assignment", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(assignment),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setLoading(false);
+        // console.log(data);-
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   return (
     <div className="max-w-6xl mx-auto my-8 py-6 ">
       <h1 className="text-slate-700 font-bold text-center my-6 text-xl md:text-5xl">
         Create A Session
       </h1>
-      <form>
+      <form onSubmit={handleAssignmentSubmitData}>
         <div className="max-w-5xl mx-auto ">
           <div className="flex flex-col my-2 p-2">
             <h1 className="text-center font-bold text-xl my-2 text-slate-600">
@@ -42,6 +84,18 @@ export default function CreateAssignment() {
               className="w-full rounded-md  md:w-1/2 md:mx-auto bg-slate-300 focus:outline-none px-4 py-3"
             />
           </div>
+          <div className="flex flex-col my-2 p-2">
+            <h1 className="text-center font-bold text-xl my-2 text-slate-600">
+              last date
+            </h1>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              placeholder="date"
+              className="w-full rounded-md  md:w-1/2 md:mx-auto bg-slate-300 focus:outline-none px-4 py-3"
+            />
+          </div>
           <div>
             <div className="flex flex-col my-2 p-2">
               <h1 className="text-center font-bold text-xl my-2 text-slate-600">
@@ -72,7 +126,7 @@ export default function CreateAssignment() {
           </div>
           <div className="  my-2 p-2 flex items-center justify-center">
             <button className="w-1/2   rounded-md  md:w-1/3 md:mx-auto bg-slate-800 text-white font-bold hover:bg-slate-600 px-4 py-3">
-              Create
+              {loading ? "creating..." : "create"}
             </button>
           </div>
         </div>

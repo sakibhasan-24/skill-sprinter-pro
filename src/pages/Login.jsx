@@ -16,6 +16,17 @@ export default function Login() {
     userSignIn(email, password)
       .then((res) => {
         toast.success("Logged in successfully", res.user.displayName);
+        fetch(`http://localhost:5000/create/token`, {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
         navigate("/");
       })
       .catch((e) => {
