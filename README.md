@@ -46,3 +46,11 @@
 - owner can not take this assignment as take assignment
 - others can take this assignment
 - others can not edit or delete this assignment,
+
+# delete an assignment
+
+- only the owner of assignment can delete an assignment
+
+# update an assignment
+
+- only the owner of assignment can update an assignment

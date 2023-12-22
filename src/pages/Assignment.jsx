@@ -14,9 +14,9 @@ export default function Assignment({ assignment, deleteAssignment }) {
         <h1 className="text-center font-semibold text-slate-900 text-xl">
           {title}
         </h1>
-        <p className="font-semibold text-[14px] text-center text-slate-600">
+        {/* <p className="font-semibold text-[14px] text-center text-slate-600">
           {description}
-        </p>
+        </p> */}
         <p className="text-sm text-gray-500">{date}</p>
         <p className="text-xs  text-center font-extrabold  bg-green-900 text-white rounded-md px-4 py-2">
           category:{category}
@@ -25,7 +25,7 @@ export default function Assignment({ assignment, deleteAssignment }) {
       <div className="flex items-center justify-between flex-wrap gap-2">
         <button
           className={`bg-green-400 px-2 py-1 rounded-md  text-xs font-bold ${
-            user && user?.email !== owner ? "hidden" : "inline-block"
+            user && user?.email !== owner ? "" : "inline-block"
           }`}
         >
           <Link to={`/edit/assignment/${_id}`}>Edit</Link>
@@ -39,11 +39,10 @@ export default function Assignment({ assignment, deleteAssignment }) {
           Delete
         </button>
         <button
-          className={`bg-indigo-400 px-2 py-1 rounded-md text-xs font-bold flex items-center justify-center ${
-            user && user?.email === owner ? "hidden" : "inline-block"
-          }`}
+          className={`bg-indigo-400 px-2 py-1 rounded-md text-xs font-bold flex items-center justify-center 
+          `}
         >
-          take assignment
+          <Link to={`/assignment/${_id}`}>View Assignment</Link>
         </button>
       </div>
     </div>

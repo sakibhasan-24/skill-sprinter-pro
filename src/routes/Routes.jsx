@@ -7,6 +7,7 @@ import Protected from "./Protected";
 import CreateAssignment from "../pages/CreateAssignment";
 import Assignments from "../pages/Assignments";
 import EditAssignment from "../pages/EditAssignment";
+import DetailsAssignment from "../pages/DetailsAssignment";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,14 @@ const router = createBrowserRouter([
         element: (
           <Protected>
             <CreateAssignment />
+          </Protected>
+        ),
+      },
+      {
+        path: "/assignment/:id",
+        element: (
+          <Protected>
+            <DetailsAssignment />
           </Protected>
         ),
       },
