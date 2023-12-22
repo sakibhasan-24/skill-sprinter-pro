@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
+import { Link } from "react-router-dom";
 
 export default function Assignment({ assignment, deleteAssignment }) {
   const { _id, title, description, date, category, image, owner } = assignment;
@@ -27,7 +28,7 @@ export default function Assignment({ assignment, deleteAssignment }) {
             user && user?.email !== owner ? "hidden" : "inline-block"
           }`}
         >
-          Edit
+          <Link to={`/edit/assignment/${_id}`}>Edit</Link>
         </button>
         <button
           onClick={() => deleteAssignment(_id)}
