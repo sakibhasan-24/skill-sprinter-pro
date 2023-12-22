@@ -1,11 +1,43 @@
 import { useLoaderData } from "react-router-dom";
 import Assignment from "./Assignment";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function Assignments() {
-  const assignments = useLoaderData();
+  const loadAssignments = useLoaderData();
 
-  const level = new URLSearchParams(location.level);
+  const [assignments, setAssignments] = useState(loadAssignments);
+  //   const level = new URLSearchParams(location.level);
+  const deleteAssignment = (id) => {
+    Swal.fire({
+      title: "Are you sure Want to Delete?",
+      text: "Once deleted, you will not be able to recover this Assignment!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/delete/assignment/${id}`, {
+          method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // console.log(data);
+
+            const remaining = assignments.filter(
+              (assignment) => assignment._id !== id
+            );
+            setAssignments(remaining);
+          });
+      }
+    });
+  };
   //   console.log(level.get("level"));
   return (
     <main className="max-w-6xl mx-auto p-6">
@@ -30,7 +62,11 @@ export default function Assignments() {
       </form>
       <div className="grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-3">
         {assignments.map((assignment) => (
-          <Assignment key={assignment._id} assignment={assignment} />
+          <Assignment
+            key={assignment._id}
+            assignment={assignment}
+            deleteAssignment={deleteAssignment}
+          />
         ))}
       </div>
     </main>

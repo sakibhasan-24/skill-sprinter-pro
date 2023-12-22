@@ -11,6 +11,19 @@ export default function GoogleSignIn() {
       .then((res) => {
         const user = res.user;
 
+        // console.log(user.email);
+        const email = user.email;
+        fetch("http://localhost:5000/create/token", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+
         // Swal.fire("Good job!", "You clicked the button!", "success");
         Swal.fire({
           title: "Success",

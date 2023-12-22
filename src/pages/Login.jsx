@@ -22,6 +22,7 @@ export default function Login() {
           headers: {
             "Content-Type": "application/json",
           },
+          body: JSON.stringify({ email }),
         })
           .then((res) => res.json())
           .then((data) => {

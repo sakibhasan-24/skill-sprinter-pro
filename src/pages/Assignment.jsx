@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 
-export default function Assignment({ assignment }) {
+export default function Assignment({ assignment, deleteAssignment }) {
   const { _id, title, description, date, category, image, owner } = assignment;
   const { user } = useContext(AuthContext);
   return (
@@ -30,6 +30,7 @@ export default function Assignment({ assignment }) {
           Edit
         </button>
         <button
+          onClick={() => deleteAssignment(_id)}
           className={`bg-red-400 px-2 py-1 rounded-md  text-xs font-bold  ${
             user && user?.email !== owner ? "hidden" : "inline-block"
           }`}
