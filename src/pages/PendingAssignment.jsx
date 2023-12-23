@@ -11,22 +11,14 @@ export default function PendingAssignment() {
       .then((res) => res.json())
       .then((data) => setPendingAssignments(data?.result));
   }, []);
-  //   console.log(assignments.id);
-  //   useEffect(() => {
-  //     fetch(`http://localhost:5000/assignment/${assignments?.id}`, {
-  //       credentials: "include",
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => console.log(data));
-  //   }, []);
-  //   load assignment title,marks,examinee name
+
   return (
     <div className="max-w-5xl mx-auto flex items-center justify-center">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-semibold text-center text-slate-700">
           Assignments...
         </h1>
-        <div>
+        <div className="w-full  flex flex-nowrap gap-4 whitespace-nowrap">
           {pendingAssignments.map((assignment) => (
             <PendingAssignmentItem
               key={assignment._id}

@@ -10,6 +10,7 @@ import EditAssignment from "../pages/EditAssignment";
 import DetailsAssignment from "../pages/DetailsAssignment";
 import SubmitAssignment from "../pages/SubmitAssignment";
 import PendingAssignment from "../pages/PendingAssignment";
+import Mark from "../pages/Mark";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,14 @@ const router = createBrowserRouter([
         element: (
           <Protected>
             <PendingAssignment />
+          </Protected>
+        ),
+      },
+      {
+        path: "mark/:id",
+        element: (
+          <Protected>
+            <Mark />
           </Protected>
         ),
       },
