@@ -1,7 +1,7 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
 import Countdown from "react-countdown";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function DetailsAssignment() {
   const { id } = useParams();
@@ -63,6 +63,13 @@ export default function DetailsAssignment() {
 
           <div className="bg-indigo-500 text-white p-4 rounded-md font-extrabold ">
             <Countdown date={submissionDate} renderer={renderer} />
+          </div>
+          <div>
+            <button className="w-full px-4 py-3 rounded-lg font-bold uppercase bg-slate-700 text-white my-4">
+              <Link to={`/submit/assignment/${details._id}`}>
+                Take Assignment
+              </Link>
+            </button>
           </div>
         </div>
       </div>

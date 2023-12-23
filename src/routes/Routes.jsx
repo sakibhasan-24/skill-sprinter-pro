@@ -8,6 +8,7 @@ import CreateAssignment from "../pages/CreateAssignment";
 import Assignments from "../pages/Assignments";
 import EditAssignment from "../pages/EditAssignment";
 import DetailsAssignment from "../pages/DetailsAssignment";
+import SubmitAssignment from "../pages/SubmitAssignment";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
         element: (
           <Protected>
             <EditAssignment />
+          </Protected>
+        ),
+      },
+      {
+        path: "/submit/assignment/:id",
+        element: (
+          <Protected>
+            <SubmitAssignment />
           </Protected>
         ),
       },
