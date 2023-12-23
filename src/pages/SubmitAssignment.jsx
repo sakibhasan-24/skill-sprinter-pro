@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { pdfjs } from "react-pdf";
+import { Document } from "react-pdf";
 import { AuthContext } from "../context/AuthProvider";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function SubmitAssignment() {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
@@ -18,7 +19,7 @@ export default function SubmitAssignment() {
       status: "pending",
       submitLink,
       shortNote,
-      _id: id,
+      id,
     };
     fetch(`http://localhost:5000/submit/assignment`, {
       method: "POST",
@@ -30,7 +31,11 @@ export default function SubmitAssignment() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data === "you can not submit your own assignment") {
+          toast.error("you can not submit your own assignment");
+          return;
+        }
+        toast.success("Assignment submitted successfully");
       });
   };
   return (
