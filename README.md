@@ -54,3 +54,9 @@
 # update an assignment
 
 - only the owner of assignment can update an assignment
+
+# take an assignment
+
+- creator can not take this assignment
+- others can take this assignment
+- submit this assignment
