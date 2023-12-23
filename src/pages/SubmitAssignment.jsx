@@ -1,11 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Document } from "react-pdf";
 import { AuthContext } from "../context/AuthProvider";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 export default function SubmitAssignment() {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  const [getAssignment, setGetAssignment] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/assignment/${id}`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => setGetAssignment(data.result));
+  }, [id]);
+  // console.log(getAssignment.marks);
   const handleSubmitAssignment = (e) => {
     e.preventDefault();
     // alert("Submitted");
@@ -18,8 +29,11 @@ export default function SubmitAssignment() {
       email: user.email,
       status: "pending",
       submitLink,
+      examineeName: user.displayName,
       shortNote,
       id,
+      marks: getAssignment.marks,
+      title: getAssignment.title,
     };
     fetch(`http://localhost:5000/submit/assignment`, {
       method: "POST",
@@ -36,6 +50,12 @@ export default function SubmitAssignment() {
           return;
         }
         toast.success("Assignment submitted successfully");
+        navigate("/pending/assignments");
+        return;
+      })
+
+      .catch((e) => {
+        console.log(e);
       });
   };
   return (

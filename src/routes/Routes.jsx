@@ -9,6 +9,7 @@ import Assignments from "../pages/Assignments";
 import EditAssignment from "../pages/EditAssignment";
 import DetailsAssignment from "../pages/DetailsAssignment";
 import SubmitAssignment from "../pages/SubmitAssignment";
+import PendingAssignment from "../pages/PendingAssignment";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,14 @@ const router = createBrowserRouter([
         element: (
           <Protected>
             <SubmitAssignment />
+          </Protected>
+        ),
+      },
+      {
+        path: "pending/assignments",
+        element: (
+          <Protected>
+            <PendingAssignment />
           </Protected>
         ),
       },

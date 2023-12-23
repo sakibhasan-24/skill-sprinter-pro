@@ -34,6 +34,14 @@ export default function Header() {
         <div className="font-bold items-center space-x-4 text-xl text-slate-700">
           <Link
             className={`w-14 h-14 rounded-md ${
+              handleNavRoutes("/assignments") && "text-red-700"
+            }`}
+            to="/assignments"
+          >
+            Assignment
+          </Link>
+          <Link
+            className={`w-14 h-14 rounded-md ${
               handleNavRoutes("/create/assignment") && "text-red-700"
             }`}
             to="create/assignment"
