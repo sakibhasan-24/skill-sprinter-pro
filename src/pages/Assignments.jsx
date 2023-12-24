@@ -2,6 +2,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import Assignment from "./Assignment";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import Spinner from "../components/Spinner";
 
 export default function Assignments() {
   const loadAssignments = useLoaderData();
@@ -118,15 +119,22 @@ export default function Assignments() {
           </select>
         </div>
       </form>
-      <div className="grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {assignments.map((assignment) => (
-          <Assignment
-            key={assignment._id}
-            assignment={assignment}
-            deleteAssignment={deleteAssignment}
-          />
-        ))}
-      </div>
+      <>
+        {!assignments ? (
+          <Spinner />
+        ) : (
+          <div className="grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {assignments.map((assignment) => (
+              <Assignment
+                key={assignment._id}
+                assignment={assignment}
+                deleteAssignment={deleteAssignment}
+              />
+            ))}
+          </div>
+        )}
+      </>
+
       {/* paginations */}
       <div className="flex items-center justify-center gap-2">
         {pageList.map((btn) => (

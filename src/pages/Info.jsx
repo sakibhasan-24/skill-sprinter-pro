@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Info({ userInfo }) {
-  console.log(userInfo);
+  //   console.log(userInfo);
   return (
     <div className="shadow-lg p-4 rounded-lg bg-slate-100 text-center space-y-3">
       <h1 className="text-centet font-semibold ">title:{userInfo.title}</h1>
