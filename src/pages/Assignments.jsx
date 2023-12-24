@@ -11,16 +11,57 @@ export default function Assignments() {
   const [levelValue, setLevelValue] = useState("");
   const [assignments, setAssignments] = useState(loadAssignments);
 
+  const [getOnlyDataCount, setGetOnlyDataCount] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [postPerPage, setPostPerPage] = useState(3);
+  //   console.log(currentPage, postPerPage);
+  // get only total Data COunt
   useEffect(() => {
-    fetch(`http://localhost:5000/get/assignments?category=${levelValue}`, {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setAssignments(data);
-      });
-  }, [levelValue]);
-  console.log(levelValue);
+    const loadData = async () => {
+      await fetch(
+        `http://localhost:5000/get/assignments?category=${levelValue}&page=${currentPage}&size=${postPerPage}`,
+        {
+          credentials: "include",
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setAssignments(data);
+        });
+    };
+    loadData();
+  }, [levelValue, currentPage, postPerPage]);
+  const url = `http://localhost:5000/get/assignments?category=${levelValue}`;
+  //   console.log(url);
+  //   console.log("page", currentPage);
+  useEffect(() => {
+    const loadData = async () => {
+      await fetch(url, {
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setGetOnlyDataCount(data);
+        });
+    };
+    loadData();
+  }, [url]);
+  //   pagination
+  const totalPage = Math.ceil(getOnlyDataCount.length / postPerPage);
+
+  console.log("t", totalPage);
+  const pageList = [...Array(totalPage).keys()];
+  //   console.log(pageList);
+  const handleCurrentPageChange = (e) => {
+    setPostPerPage(parseInt(e.target.value));
+    setCurrentPage(1);
+  };
+  const handleCurrentPage = (page) => {
+    setCurrentPage(page);
+  };
+
+  console.log("le", getOnlyDataCount.length);
+
   const deleteAssignment = (id) => {
     Swal.fire({
       title: "Are you sure Want to Delete?",
@@ -51,7 +92,7 @@ export default function Assignments() {
       }
     });
   };
-  console.log(assignments);
+  //   console.log(assignments);
   //   console.log(level.get("level"));
   return (
     <main className="max-w-6xl mx-auto p-6">
@@ -85,6 +126,38 @@ export default function Assignments() {
             deleteAssignment={deleteAssignment}
           />
         ))}
+      </div>
+      {/* paginations */}
+      <div className="flex items-center justify-center gap-2">
+        {pageList.map((btn) => (
+          <button
+            style={{
+              backgroundColor: currentPage === btn ? "red" : "black",
+            }}
+            onClick={() => handleCurrentPage(btn)}
+            className="bg-slate-900 text-white p-2 rounded-lg ml-4"
+            key={btn}
+          >
+            {btn + 1}
+          </button>
+        ))}
+        <select
+          name=""
+          id=""
+          value={postPerPage}
+          onChange={handleCurrentPageChange}
+          className="ml-6"
+        >
+          <option className="px-2 py-1 bg-slate-800 " value="1">
+            1
+          </option>
+          <option className="px-2 py-1 bg-slate-800 " value="2">
+            2
+          </option>
+          <option className="px-2 py-1 bg-slate-800 " value="3">
+            3
+          </option>
+        </select>
       </div>
     </main>
   );
