@@ -16,7 +16,7 @@ export default function SubmitAssignment() {
       .then((res) => res.json())
       .then((data) => setGetAssignment(data.result));
   }, [id]);
-  // console.log(getAssignment.marks);
+  // console.log(getAssignment);
   const handleSubmitAssignment = (e) => {
     e.preventDefault();
     // alert("Submitted");

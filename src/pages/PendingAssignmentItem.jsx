@@ -7,7 +7,7 @@ export default function PendingAssignmentItem({ assignment }) {
   const { title, marks, _id, examineeName, status } = assignment;
 
   return (
-    <div className="bg-slate-100 p-6  rounded-lg shadow-lg  text-gray-600 font-semibold flex flex-col flex-1 ">
+    <div className="bg-slate-100 p-6 my-12  rounded-lg shadow-lg  text-gray-600 font-semibold flex flex-col flex-1 ">
       <h1 className="">{title}</h1>
       <p>marks:{marks}</p>
       <p>student name:{examineeName}</p>

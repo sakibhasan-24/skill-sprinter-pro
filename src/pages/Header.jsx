@@ -20,7 +20,7 @@ export default function Header() {
   };
   return (
     <header className="bg-slate-100 p-4 ">
-      <nav className="max-w-5xl mx-auto flex flex-col md:flex-col lg:flex-row justify-between items-center">
+      <nav className="max-w-5xl mx-auto flex flex-col md:flex-col lg:flex-row  gap-6 items-center">
         <div>
           <Link to="">
             <img
@@ -38,7 +38,23 @@ export default function Header() {
             }`}
             to="/assignments"
           >
+            my Assignment
+          </Link>
+          <Link
+            className={`w-14 h-14 rounded-md ${
+              handleNavRoutes("/assignments") && "text-red-700"
+            }`}
+            to="/assignments"
+          >
             Assignment
+          </Link>
+          <Link
+            className={`w-14 h-14 rounded-md ${
+              handleNavRoutes("/profile") && "text-red-700"
+            }`}
+            to="/profile"
+          >
+            Profile
           </Link>
           <Link
             className={`w-14 h-14 rounded-md ${

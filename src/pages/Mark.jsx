@@ -1,9 +1,14 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
+import { toast } from "react-toastify";
 
 export default function Mark() {
   // http://localhost:5000/assignment/65851cf79037fb8d6c5d1889
+  const { user } = useContext(AuthContext);
+  console.log(user.email);
   const { id } = useParams();
+  const navigate = useNavigate();
   const updateSubmitForm = (e) => {
     e.preventDefault();
     const mark = e.target.mark.value;
@@ -19,6 +24,11 @@ export default function Mark() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.success === false) {
+          toast.error("you can not updated successfully!!");
+        }
+        toast.success("marks updated successfully");
+        navigate("/all-assignment");
       });
   };
   return (
