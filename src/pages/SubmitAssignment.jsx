@@ -3,6 +3,13 @@ import { Document } from "react-pdf";
 import { AuthContext } from "../context/AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { pdfjs } from "react-pdf";
+import PDFcom from "../components/PDFcom";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.js",
+  import.meta.url
+).toString();
 export default function SubmitAssignment() {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
@@ -83,6 +90,7 @@ export default function SubmitAssignment() {
           </button>
         </div>
       </form>
+      <PDFcom />
     </div>
   );
 }
