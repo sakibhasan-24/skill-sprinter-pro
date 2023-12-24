@@ -7,7 +7,7 @@ export default function Assignments() {
   const loadAssignments = useLoaderData();
 
   const [assignments, setAssignments] = useState(loadAssignments);
-  //   const level = new URLSearchParams(location.level);
+
   const deleteAssignment = (id) => {
     Swal.fire({
       title: "Are you sure Want to Delete?",
@@ -38,6 +38,7 @@ export default function Assignments() {
       }
     });
   };
+  console.log(assignments);
   //   console.log(level.get("level"));
   return (
     <main className="max-w-6xl mx-auto p-6">
