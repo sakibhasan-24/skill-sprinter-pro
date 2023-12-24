@@ -1,13 +1,26 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import Assignment from "./Assignment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 export default function Assignments() {
   const loadAssignments = useLoaderData();
 
+  //   const { category } = useParams();
+  //   console.log(category);
+  const [levelValue, setLevelValue] = useState("");
   const [assignments, setAssignments] = useState(loadAssignments);
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/get/assignments?category=${levelValue}`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setAssignments(data);
+      });
+  }, [levelValue]);
+  console.log(levelValue);
   const deleteAssignment = (id) => {
     Swal.fire({
       title: "Are you sure Want to Delete?",
@@ -54,7 +67,10 @@ export default function Assignments() {
             className="w-full rounded-md  md:w-1/2 md:mx-auto text-white focus:outline-none px-4 py-3 bg-slate-700"
             name="level"
             id="level"
+            value={levelValue}
+            onChange={(e) => setLevelValue(e.target.value)}
           >
+            <option value="">All</option>
             <option value="easy">easy</option>
             <option value="medium">medium</option>
             <option value="hard">hard</option>
