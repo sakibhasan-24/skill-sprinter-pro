@@ -5,9 +5,12 @@ export default function PendingAssignment() {
   const [assignments, setAssignments] = useState([]);
   const [pendingAssignments, setPendingAssignments] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/pending/submitted/assignments", {
-      credentials: "include",
-    })
+    fetch(
+      "https://skill-sprinter-pro-server.vercel.app/pending/submitted/assignments",
+      {
+        credentials: "include",
+      }
+    )
       .then((res) => res.json())
       .then((data) => setPendingAssignments(data?.result));
   }, []);
@@ -19,12 +22,14 @@ export default function PendingAssignment() {
           Assignments...
         </h1>
         <div className="w-full  flex flex-nowrap gap-4 whitespace-nowrap">
-          {pendingAssignments.map((assignment) => (
-            <PendingAssignmentItem
-              key={assignment._id}
-              assignment={assignment}
-            />
-          ))}
+          {pendingAssignments.length === 0
+            ? "no assignment"
+            : pendingAssignments.map((assignment) => (
+                <PendingAssignmentItem
+                  key={assignment._id}
+                  assignment={assignment}
+                />
+              ))}
         </div>
       </div>
     </div>

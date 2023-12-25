@@ -17,16 +17,16 @@ export default function SubmitAssignment() {
 
   const [getAssignment, setGetAssignment] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/assignment/${id}`, {
+    fetch(`https://skill-sprinter-pro-server.vercel.app/assignment/${id}`, {
       credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => setGetAssignment(data.result));
   }, [id]);
-  // console.log(getAssignment);
+
   const handleSubmitAssignment = (e) => {
     e.preventDefault();
-    // alert("Submitted");
+
     const form = e.target;
     const formData = new FormData(form);
 
@@ -42,7 +42,8 @@ export default function SubmitAssignment() {
       marks: getAssignment.marks,
       title: getAssignment.title,
     };
-    fetch(`http://localhost:5000/submit/assignment`, {
+    console.log(submitAssignment);
+    fetch(`https://skill-sprinter-pro-server.vercel.app/submit/assignment`, {
       method: "POST",
       credentials: "include",
       headers: {

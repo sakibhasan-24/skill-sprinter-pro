@@ -36,7 +36,9 @@ const router = createBrowserRouter([
         path: "/assignments",
         element: <Assignments />,
         loader: () => {
-          return fetch(`http://localhost:5000/get/assignments/`);
+          return fetch(
+            `https://skill-sprinter-pro-server.vercel.app/get/assignments/`
+          );
         },
       },
       {

@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 export default function Service({ service }) {
-  console.log(service);
+  // console.log(service);
   return (
     <motion.div
       className="w-4/5 mx-auto shadow-lg p-2  my-6 rounded-lg flex  flex-col "

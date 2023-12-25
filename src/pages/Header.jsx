@@ -20,7 +20,7 @@ export default function Header() {
   };
   return (
     <header className="bg-slate-100 p-4 ">
-      <nav className="max-w-5xl mx-auto flex flex-col md:flex-col lg:flex-row  gap-6 items-center">
+      <nav className="w-full md:max-w-5xl  mx-auto flex flex-col md:flex-col lg: md:justify-between lg:flex-row  gap-6 items-center">
         <div>
           <Link to="">
             <img
@@ -31,15 +31,15 @@ export default function Header() {
             />
           </Link>
         </div>
-        <div className="font-bold items-center space-x-4 text-xl text-slate-700">
-          {/* <Link
+        <div className="f font-bold  space-x-4 text-xs md:text-xl text-slate-700">
+          <Link
             className={`w-14 h-14 rounded-md ${
-              handleNavRoutes("/assignments") && "text-red-700"
+              handleNavRoutes("/pending/assignments") && "text-red-700"
             }`}
-            to="/assignments"
+            to="/pending/assignments"
           >
-            my Assignment
-          </Link> */}
+            pending Assignment
+          </Link>
           <Link
             className={`w-14 h-14 rounded-md ${
               handleNavRoutes("/assignments") && "text-red-700"

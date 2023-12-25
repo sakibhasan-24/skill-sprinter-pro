@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function PendingAssignmentItem({ assignment }) {
-  console.log(assignment);
+  // console.log(assignment);
   const { title, marks, _id, examineeName, status } = assignment;
 
   return (

@@ -24,7 +24,7 @@ export default function CreateAssignment() {
       category,
       owner: user.email,
     };
-    fetch("http://localhost:5000/create/assignment", {
+    fetch("https://skill-sprinter-pro-server.vercel.app/create/assignment", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -53,6 +53,7 @@ export default function CreateAssignment() {
               title
             </h1>
             <input
+              required
               type="text"
               id="title"
               name="title"
@@ -66,6 +67,7 @@ export default function CreateAssignment() {
             </h1>
             <textarea
               type="text"
+              required
               id="description"
               name="description"
               placeholder="description"
@@ -90,6 +92,7 @@ export default function CreateAssignment() {
             </h1>
             <input
               type="date"
+              required
               id="date"
               name="date"
               placeholder="date"
@@ -102,6 +105,7 @@ export default function CreateAssignment() {
                 Marks
               </h1>
               <input
+                required
                 type="number"
                 id="marks"
                 name="marks"

@@ -16,7 +16,7 @@ export default function Login() {
     userSignIn(email, password)
       .then((res) => {
         toast.success("Logged in successfully", res.user.displayName);
-        fetch(`http://localhost:5000/create/token`, {
+        fetch(`https://skill-sprinter-pro-server.vercel.app/create/token`, {
           method: "POST",
           credentials: "include",
           headers: {
@@ -26,7 +26,7 @@ export default function Login() {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
           });
         navigate("/");
       })

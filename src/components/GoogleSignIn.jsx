@@ -13,7 +13,7 @@ export default function GoogleSignIn() {
 
         // console.log(user.email);
         const email = user.email;
-        fetch("http://localhost:5000/create/token", {
+        fetch("https://skill-sprinter-pro-server.vercel.app/create/token", {
           method: "POST",
           credentials: "include",
           headers: {
@@ -22,7 +22,7 @@ export default function GoogleSignIn() {
           body: JSON.stringify({ email }),
         })
           .then((res) => res.json())
-          .then((data) => console.log(data));
+          .then((data) => {});
 
         // Swal.fire("Good job!", "You clicked the button!", "success");
         Swal.fire({

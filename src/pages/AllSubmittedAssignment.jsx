@@ -5,9 +5,12 @@ import AllSubmittedAssignmentItems from "./AllSubmittedAssignmentItems";
 export default function AllSubmittedAssignment() {
   const [assignments, setAssignments] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/submitted/assignments", {
-      credentials: "include",
-    })
+    fetch(
+      "https://skill-sprinter-pro-server.vercel.app/submitted/assignments",
+      {
+        credentials: "include",
+      }
+    )
       .then((res) => res.json())
       .then((data) => setAssignments(data?.result));
   }, []);

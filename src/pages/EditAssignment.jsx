@@ -10,9 +10,12 @@ export default function EditAssignment() {
   //   console.log(id);
   useEffect(() => {
     const loadData = async () => {
-      await fetch(`http://localhost:5000/get/assignment/${id}`, {
-        credentials: "include",
-      })
+      await fetch(
+        `https://skill-sprinter-pro-server.vercel.app/get/assignment/${id}`,
+        {
+          credentials: "include",
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           setDetails(data);
@@ -40,14 +43,17 @@ export default function EditAssignment() {
       category,
     };
     // console.log(information);
-    fetch(`http://localhost:5000/edit/assignment/${id}`, {
-      method: "PATCH",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(information),
-    })
+    fetch(
+      `https://skill-sprinter-pro-server.vercel.app/edit/assignment/${id}`,
+      {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(information),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.success === true) {

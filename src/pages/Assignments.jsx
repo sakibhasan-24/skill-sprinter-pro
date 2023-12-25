@@ -11,7 +11,6 @@ export default function Assignments() {
   //   console.log(category);
   const [levelValue, setLevelValue] = useState("");
   const [assignments, setAssignments] = useState(loadAssignments);
-
   const [getOnlyDataCount, setGetOnlyDataCount] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [postPerPage, setPostPerPage] = useState(3);
@@ -20,7 +19,7 @@ export default function Assignments() {
   useEffect(() => {
     const loadData = async () => {
       await fetch(
-        `http://localhost:5000/get/assignments?category=${levelValue}&page=${currentPage}&size=${postPerPage}`,
+        `https://skill-sprinter-pro-server.vercel.app/get/assignments?category=${levelValue}&page=${currentPage}&size=${postPerPage}`,
         {
           credentials: "include",
         }
@@ -32,7 +31,7 @@ export default function Assignments() {
     };
     loadData();
   }, [levelValue, currentPage, postPerPage]);
-  const url = `http://localhost:5000/get/assignments?category=${levelValue}`;
+  const url = `https://skill-sprinter-pro-server.vercel.app/get/assignments?category=${levelValue}`;
   //   console.log(url);
   //   console.log("page", currentPage);
   useEffect(() => {
@@ -74,13 +73,16 @@ export default function Assignments() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/delete/assignment/${id}`, {
-          method: "DELETE",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+        fetch(
+          `https://skill-sprinter-pro-server.vercel.app/delete/assignment/${id}`,
+          {
+            method: "DELETE",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             // console.log(data);

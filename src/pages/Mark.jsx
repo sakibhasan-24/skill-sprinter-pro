@@ -15,41 +15,45 @@ export default function Mark() {
     const mark = e.target.mark.value;
     const status = "completed";
 
-    fetch(`http://localhost:5000/update/assignment/${id}`, {
-      credentials: "include",
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ mark, status }),
-    })
+    fetch(
+      `https://skill-sprinter-pro-server.vercel.app/update/assignment/${id}`,
+      {
+        credentials: "include",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mark, status }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
         if (data.success === false) {
-          toast.error("you can not updated successfully!!");
+          toast.error("you can not give your own marks !");
           return;
         }
         const information = {
           email: user.email,
           mark: mark,
-          status: data.status,
+          status: "completed",
           title: data.existingState?.title,
           examineeEmail: data.existingState.email,
         };
 
-        fetch(`http://localhost:5000/marks`, {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(information),
-        })
+        fetch(
+          `https://skill-sprinter-pro-server.vercel.app/update/user/result/${id}`,
+          {
+            method: "PATCH",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(information),
+          }
+        )
           .then((res) => res.json())
-          .then((data) => {
-            console.log("POST", data);
-          });
+          .then((data) => {});
         toast.success("marks updated successfully");
         navigate("/all-assignment");
       });

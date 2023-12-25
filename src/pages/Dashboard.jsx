@@ -7,7 +7,7 @@ export default function Dashboard() {
   const [info, setInfo] = useState([]);
   useEffect(() => {
     fetch(
-      `http://localhost:5000/user/submitted/assignments?email=${user?.email}`,
+      `https://skill-sprinter-pro-server.vercel.app/user/submitted/assignments?email=${user?.email}`,
       {
         credentials: "include",
       }
