@@ -6,7 +6,7 @@ export default function AllSubmittedAssignment() {
   const [assignments, setAssignments] = useState([]);
   useEffect(() => {
     fetch(
-      https://server-8lmdgp0sx-sakib-hasans-projects.vercel.app/submitted/assignments",
+      "https://server-8lmdgp0sx-sakib-hasans-projects.vercel.app/submitted/assignments",
       {
         credentials: "include",
       }

@@ -13,14 +13,17 @@ export default function GoogleSignIn() {
 
         // console.log(user.email);
         const email = user.email;
-        fetch(https://server-8lmdgp0sx-sakib-hasans-projects.vercel.app/create/token", {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        })
+        fetch(
+          "https://server-8lmdgp0sx-sakib-hasans-projects.vercel.app/create/token",
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {});
 
