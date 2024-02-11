@@ -4,7 +4,7 @@ import Service from "./Service";
 export default function Services() {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch("https://skill-sprinter-pro-server.vercel.app/services")
+    fetch(https://server-8lmdgp0sx-sakib-hasans-projects.vercel.app/services")
       .then((response) => response.json())
       .then((data) => setServices(data))
       .catch((err) => console.log(err));

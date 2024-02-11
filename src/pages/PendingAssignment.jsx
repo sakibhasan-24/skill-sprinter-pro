@@ -6,7 +6,7 @@ export default function PendingAssignment() {
   const [pendingAssignments, setPendingAssignments] = useState([]);
   useEffect(() => {
     fetch(
-      "https://skill-sprinter-pro-server.vercel.app/pending/submitted/assignments",
+      https://server-8lmdgp0sx-sakib-hasans-projects.vercel.app/pending/submitted/assignments",
       {
         credentials: "include",
       }

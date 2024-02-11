@@ -24,7 +24,7 @@ export default function CreateAssignment() {
       category,
       owner: user.email,
     };
-    fetch("https://skill-sprinter-pro-server.vercel.app/create/assignment", {
+    fetch(https://server-8lmdgp0sx-sakib-hasans-projects.vercel.app/create/assignment", {
       method: "POST",
       credentials: "include",
       headers: {
