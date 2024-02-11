@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const useAxiosPublicData = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://skill-sprinter-pro-server.vercel.app",
 });
 
 export default function useAxiosPublic() {
