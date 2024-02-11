@@ -1,6 +1,7 @@
 import Banner from "../components/Banner";
 import FAQ from "../components/FAQ";
 import Services from "../components/Services";
+import Reviews from "./Reviews";
 
 export default function HomeItems() {
   return (
@@ -8,6 +9,7 @@ export default function HomeItems() {
       <Banner />
       <Services />
       <FAQ />
+      <Reviews />
     </div>
   );
 }
